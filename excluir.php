@@ -2,8 +2,6 @@
 
 require __DIR__.'/vendor/autoload.php';
 
-define('TITLE', 'Editar Vaga');
-
 use \App\Entity\Vaga;
 
 //VALIDAÇÃO DO ID
@@ -21,12 +19,15 @@ if(!$obVaga instanceof Vaga){
     exit;
 }
 
+// echo "<pre>";
+// print_r($obVaga);
+// echo "</pre>";
+// exit;
+
 //VALIDAÇÃO DO POST
-if(isset($_POST['titulo'], $_POST['descricao'], $_POST['ativo'])){
-    $obVaga -> titulo       = $_POST['titulo'];
-    $obVaga -> descricao    = $_POST['descricao'];
-    $obVaga -> ativo        = $_POST['ativo'];
-    $obVaga -> atualizar();
+if(isset($_POST['excluir'])){
+   
+    $obVaga -> excluir();
 
     header('location: index.php?status=success');
     exit;
@@ -38,5 +39,5 @@ if(isset($_POST['titulo'], $_POST['descricao'], $_POST['ativo'])){
 }
 
 include __DIR__.'/includes/header.php';
-include __DIR__.'/includes/formulario.php';
+include __DIR__.'/includes/confirmar-exclusao.php';
 include __DIR__.'/includes/footer.php';
